@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// Spring-boot controller decorator for dependencies injection
 @RestController
 
 public class DevPublicationsController {
@@ -19,12 +20,14 @@ public class DevPublicationsController {
         this.devPublicationsRepository = devPublicationsRepository;
     }
 
+    // Creating a new publication
     @PostMapping("/newDevPublication")
     DevPublications newDevPublication(@RequestBody DevPublications devPublication){
         devPublication.setDevPostDate(new Date());
         return devPublicationsRepository.save(devPublication);
     }
 
+    // Listing all publications from a user
     @GetMapping("/devPublications/{username}")
     List <DevPublications> getDevPublications(@PathVariable String username) {
         List <DevPublications> devPublications =
@@ -34,6 +37,7 @@ public class DevPublicationsController {
         return devPublications;
     }
 
+    // Listing all publications
     @GetMapping("/devPublications/all")
     List <DevPublications> getAllDevPublications(){
         return devPublicationsRepository.findAll();

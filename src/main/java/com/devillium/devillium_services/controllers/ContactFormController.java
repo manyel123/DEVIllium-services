@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// Spring-boot controller decorator for dependencies injection
 @RestController
 
 public class ContactFormController {
@@ -19,6 +20,7 @@ public class ContactFormController {
         this.contactFormRepository = contactFormRepository;
     }
 
+    // Creating a new contact form
     @PostMapping("/newContactForm")
     ContactForm newContactForm(@RequestBody ContactForm contactForm){
         contactForm.setContactFormDate(new Date());
@@ -26,6 +28,7 @@ public class ContactFormController {
         return contactFormRepository.save(contactForm);
     }
 
+    // Getting a list of reviewed or not reviewed contact forms
     @GetMapping("/contactForms/reviewed/{contactFormReviewed}")
     List <ContactForm> getContactForms(@PathVariable boolean contactFormReviewed) {
         List <ContactForm> contactForms =
@@ -36,6 +39,7 @@ public class ContactFormController {
         return contactForms;
     }
 
+    // Getting all forms
     @GetMapping("/contactForms/all")
     List <ContactForm> getAllContactForms() {
         return contactFormRepository.findAll();

@@ -4,7 +4,11 @@ import org.springframework.data.annotation.Id;
 import java.util.Date;
 
 public class DevPublications {
+
+    // Entity's identifier (In spring-boot)
     @Id
+
+    // Entity's attributes
     private String id;
     private String username;
     private String devPost;
